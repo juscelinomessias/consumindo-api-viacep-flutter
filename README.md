@@ -4,10 +4,9 @@ A proposta do desafio foi criar um app para consultar CEPs utilizando a api do V
 
 ### Checklist do Desafio
 - [x] Criar uma aplicação Flutter​
-- [x] Criar um banco de dados / Back4App​
-- [x] Fazer um cadastro de pessoa com foto de perfil​
-- [x] Salvar apenas o path da imagem na base de dados​
-- [x] Listar as pessoas em uma lista com sua respectiva foto​
-- [x] Usar os outros componentes aprendidos
+- [x] Criar uma classe de CEP no Back4App​
+- [x] Consulte um Cep no ViaCep, após retornado se não existir no Back4App, realizar o cadastro​
+- [x] Listar os CEPs cadastrados em forma de lista, possibilitando a alteração e exclusão do CEP​
      
 ### Resultado
+![Consulta Cep](https://github.com/juscelinomessias/consumindo-api-viacep-flutter/assets/20049294/59f820bf-ed0a-4ab7-b2d5-375350e1c6f2)
