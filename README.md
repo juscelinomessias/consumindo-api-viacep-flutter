@@ -1,6 +1,6 @@
 ﻿# App Flutter para o Consumo da API do ViaCEP
 
-A proposta do desafio foi criar um app para consultar CEPs utilizando a api do ViaCep.  Após realizar a consulta, o usuário tem a possibilidade de complementar os dados recebidos e salvar o resultado em banco de dados, pra isso foi utilizado a api do Back4App, uma plataforma de back-end como serviço (BaaS). Os endereços salvos podem ser visualizados em forma de lista, podendo ser excluídos apenas arrastando para a esquerda, ou ainda, com um clique podem ser editados.
+A proposta do desafio foi criar um app para consultar CEPs utilizando a api do ViaCep.  Após realizar a consulta, o usuário tem a possibilidade de complementar os dados recebidos e salvar o resultado em banco de dados, pra isso foi utilizado a api do Back4App, uma plataforma de back-end como serviço (BaaS). Os endereços salvos podem ser visualizados em forma de lista, podendo ser excluídos apenas arrastando para a esquerda, ou ainda, com um clique podem ser editados.  O app realiza uma verificação para saber se já existe uma endereço salvo com o cep informado, somente após a verificação é que o dado é salvo no banco.
 
 ### Checklist do Desafio
 - [x] Criar uma aplicação Flutter​
