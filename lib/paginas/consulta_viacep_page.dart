@@ -1,5 +1,6 @@
 import 'package:consumindo_api_viacep_flutter/modelos/viacep_model.dart';
 import 'package:consumindo_api_viacep_flutter/paginas/cadastrar_back4app_page.dart';
+import 'package:consumindo_api_viacep_flutter/repositorios/back4app/tarefas_back4app_repository.dart';
 import 'package:consumindo_api_viacep_flutter/repositorios/viacep/via_cep_repository.dart';
 import 'package:consumindo_api_viacep_flutter/shared/widgets/custon_drawer.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class ConsultaViaCepPage extends StatefulWidget {
 }
 
 class _ConsultaViaCepPageState extends State<ConsultaViaCepPage> {
+  TarefasBack4AppRepository tarefaRepository = TarefasBack4AppRepository();
   var cepController = TextEditingController(text: "");
 
   bool loading = false;
@@ -181,17 +183,48 @@ class _ConsultaViaCepPageState extends State<ConsultaViaCepPage> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          Cadastrarback4app(dados: viacepModel),
-                    ),
-                  );
+                  _verificar();
                 },
               )),
         ],
       ),
     );
+  }
+
+// salvar dados no back4app
+  _verificar() async {
+    if (!await tarefaRepository.verificarCep(cep: viacepModel.cep)) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Cadastrarback4app(dados: viacepModel),
+        ),
+      );
+    } else {
+      // Remove o SnackBar caso esteja aberto
+      ScaffoldMessenger.of(context).clearSnackBars();
+
+      // Exibe uma mensagem quando o Contato é criado
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Padding(
+            padding: EdgeInsets.symmetric(vertical: 14),
+            child: Text(
+              "Endereço já está cadastrado!",
+              style: TextStyle(
+                color: Color(0xFFffffff),
+                fontSize: 17,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 3),
+        ),
+      );
+
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const ConsultaViaCepPage()));
+    }
   }
 }

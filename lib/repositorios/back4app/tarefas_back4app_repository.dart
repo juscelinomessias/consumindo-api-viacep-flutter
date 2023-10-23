@@ -20,20 +20,14 @@ class TarefasBack4AppRepository {
     return TarefasBack4AppModel.fromJson(result.data);
   }
 
-  Future<bool> verificaExistencia(String objectId) async {
+  Future<bool> verificarCep({required cep}) async {
     try {
-      final response = await _dio.get(
-        "https://parseapi.back4app.com/classes/Ceps/$objectId",
-      );
-      print("Cep existe");
-      return response.statusCode == 200;
+      var response = await _dio.get(
+          'https://parseapi.back4app.com/classes/Ceps?where={"cep":"$cep"}');
+      final data = response.data['results'] as List<dynamic>;
+      return data.isNotEmpty;
     } catch (e) {
-      if (e is DioError &&
-          e.response != null &&
-          e.response?.statusCode == 404) {
-        return false;
-      }
-      throw e;
+      rethrow;
     }
   }
 
